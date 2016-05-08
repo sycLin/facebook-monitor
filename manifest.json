@@ -19,5 +19,8 @@
 			"matches": ["http://www.facebook.com/*", "https://www.facebook.com/*"],
 			"js": ["content.js"]
 		}
-	]
+	],
+	"background": {
+		"scripts": ["background.js"]
+	}
 }
