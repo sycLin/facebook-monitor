@@ -38,7 +38,6 @@ var StopWatch = (function() {
 		}
 	};
 
-
 })();
 
 // to start the stopwatch for calculating the time spent on facebook-related webpages
@@ -103,11 +102,20 @@ chrome.tabs.onActivated.addListener(function(activeInfo) {
 			fb_start();
 		} else {
 			console.log('it is not a facebook related one.');
+			// we should stop the stopwatch
+			fb_stop();
 		}
 	});
 });
 
-// chrome.tabs.onRemoved.addListener(function callback);
+chrome.tabs.onRemoved.addListener(function(tabId, removeInfo) {
+	console.log("a tab is being removed. (tabId = " + tabId + ")");
+	if(removeInfo.isWindowClosing) {
+		console.log("the window is also closing. (windowId = " + removeInfo.windowId + ")");
+		// stop the stopwatch
+		fb_stop();
+	}
+});
 
 
 
